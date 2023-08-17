@@ -171,6 +171,7 @@ struct CPUArchState {
     target_ulong geilen;
     uint64_t resetvec;
 
+    target_ulong dmst;
     target_ulong mhartid;
     /*
      * For RV32 this is 32-bit mstatus and 32-bit mstatush.

@@ -2380,6 +2380,7 @@ static const char *csr_name(int csrno)
     case 0x0f12: return "marchid";
     case 0x0f13: return "mimpid";
     case 0x0f14: return "mhartid";
+    case 0x07c4:  return "dmst";
     default: return NULL;
     }
 }

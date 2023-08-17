@@ -1827,6 +1827,29 @@ static RISCVException write_mtvec(CPURISCVState *env, int csrno,
     return RISCV_EXCP_NONE;
 }
 
+static RISCVException write_dmst(CPURISCVState *env, int csrno,
+                                  target_ulong val)
+{
+	if (val != 0x11)
+	{
+		env->dmst = val;
+		qemu_log_mask(LOG_UNIMP, "CSR_DMST: legal instruction\n");
+		return RISCV_EXCP_NONE;
+	}
+	else
+	{
+		qemu_log_mask(LOG_UNIMP, "CSR_DMST: illegal instruction\n");
+		return RISCV_EXCP_ILLEGAL_INST;
+	}
+}
+
+static RISCVException read_dmst(CPURISCVState *env, int csrno,
+                                  target_ulong *val)
+{
+	*val = env->dmst;
+    return RISCV_EXCP_NONE;
+}
+
 static RISCVException read_mcountinhibit(CPURISCVState *env, int csrno,
                                          target_ulong *val)
 {
@@ -4385,6 +4408,7 @@ riscv_csr_operations csr_ops[CSR_TABLE_SIZE] = {
     [CSR_TDATA2]    =  { "tdata2",  debug, read_tdata,   write_tdata   },
     [CSR_TDATA3]    =  { "tdata3",  debug, read_tdata,   write_tdata   },
     [CSR_TINFO]     =  { "tinfo",   debug, read_tinfo,   write_ignore  },
+    [CSR_DMST]      =  { "dmst",    debug, read_dmst,    write_dmst  },
 
     /* User Pointer Masking */
     [CSR_UMTE]    =    { "umte",    pointer_masking, read_umte,  write_umte },

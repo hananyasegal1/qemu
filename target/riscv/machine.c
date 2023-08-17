@@ -402,6 +402,7 @@ const VMStateDescription vmstate_riscv_cpu = {
         VMSTATE_UINTTL(env.sscratch, RISCVCPU),
         VMSTATE_UINTTL(env.mscratch, RISCVCPU),
         VMSTATE_UINT64(env.stimecmp, RISCVCPU),
+		VMSTATE_UINTTL(env.dmst, RISCVCPU),
 
         VMSTATE_END_OF_LIST()
     },

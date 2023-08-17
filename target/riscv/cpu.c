@@ -619,6 +619,7 @@ static void riscv_cpu_dump_state(CPUState *cs, FILE *f, int flags)
 #ifndef CONFIG_USER_ONLY
     {
         static const int dump_csrs[] = {
+        	CSR_DMST,
             CSR_MHARTID,
             CSR_MSTATUS,
             CSR_MSTATUSH,
